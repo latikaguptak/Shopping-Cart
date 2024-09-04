@@ -5,31 +5,39 @@ import { fetchProducts } from "../../store/productSlice";
 import { STATUSES } from "../../store/productSlice";
 
 const Products = () => {
+  const [count,setCount]=useState(1)
   const dispatch = useDispatch();
-  const {data: products, status}= useSelector((state)=>state.product)
-//   const [products, setProducts] = useState([]);  
+  const { data: products, status } = useSelector((state) => state.product);
+  console.log(products);
 
   useEffect(() => {
-
     dispatch(fetchProducts());
-//     const fetchProducts = async () => {
-//       const res = await fetch("https://fakestoreapi.com/products");
-//       const data = await res.json();
-//       console.log(data);
-//       setProducts(data);
-//     };
-//     fetchProducts();
- }, []);
-    const addToCart = (product) => {
-        dispatch(add(product));
-     }
-if (status === STATUSES.LOADING){
-    return <p>Loading...</p>;
+  }, [dispatch]);
+
+  const addToCart = (product) => {
+
+    
+    dispatch(add(product));
   
-}
-if (status === STATUSES.ERROR){
+  }
+  if (status === STATUSES.LOADING) {
+    return <p>Loading...</p>;
+  }
+
+  if (status === STATUSES.ERROR) {
     return <p>Error fetching products.</p>;
-}
+  }
+
+  // const quantityChange = (operation) => {
+  //   if (operation==='i'){
+
+  //     setCount(count+1);
+  //   }
+  //   else{
+  //     setCount(count-1);
+  //   }
+  //   }
+
   return (
     <div className="productsWrapper grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
       {Array.isArray(products) &&
@@ -50,6 +58,20 @@ if (status === STATUSES.ERROR){
               <h5 className="text-gray-700 text-xl font-bold">
                 ${product.price}
               </h5>
+              {product.rating && (
+                <h6 className="text-gray-600">{product.rating.rate}</h6>
+              )}
+            </div>
+            <div className="flex justify-between items-center mt-4">
+              {/* <button
+              disabled={count>=product.rating.count}
+              onClick={()=>quantityChange('i')}
+              >+</button>
+              <pan>{count}</pan>
+              <button
+              disabled={count<=0}
+              onClick={()=>quantityChange('d')}
+              >-</button> */}
               <button
                 onClick={() => addToCart(product)}
                 className="bg-blue-500 text-white text-sm py-1 px-2 rounded-md hover:bg-blue-600 transition duration-300 flex items-center space-x-1"

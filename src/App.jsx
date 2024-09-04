@@ -2,6 +2,8 @@ import { Outlet } from "react-router";
 import Navbar from './assets/components/Navbar';
 import{Provider} from 'react-redux';
 import store from './store/store';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   return (
     <div className='App flex flex-col min-h-screen'>
@@ -10,6 +12,7 @@ const App = () => {
         <Navbar />
           <main className='flex-grow'>
             <Outlet />
+            <ToastContainer />
           </main>
         <footer className='bg-gray-800 text-white text-center py-4'>
           &copy; 2024 My Shopping Website
