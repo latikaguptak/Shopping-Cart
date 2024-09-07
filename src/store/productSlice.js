@@ -37,6 +37,7 @@ const productSlice = createSlice({
   // },
 });
 
+
 export const { setProducts, setStatus } = productSlice.actions;
 export default productSlice.reducer;
 
@@ -47,6 +48,7 @@ export const fetchProducts = createAsyncThunk("product/fetch", async () => {
   const data = await res.json();
   return data;
 });
+
 
 // export function fetchProducts() {
 //     return async function fetchProductThunk(dispatch, getState) {
