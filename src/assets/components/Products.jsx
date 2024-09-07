@@ -83,9 +83,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../store/cartSlice";
 import { fetchProducts } from "../../store/productSlice";
 import { STATUSES } from "../../store/productSlice";
+import { ToastContainer } from "react-toastify";
+import { json } from "react-router";
 
 const Products = () => {
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state) => state.product);
   console.log(products);
@@ -96,6 +98,7 @@ const Products = () => {
 
   const addToCart = (product) => {
     dispatch(add(product));
+    // localStorage.setItem('product', product); 
   };
 
   if (status === STATUSES.LOADING) {
@@ -158,6 +161,7 @@ const Products = () => {
             </button>
           </div>
         ))}
+        <ToastContainer stacked/>
     </div>
   );
 };
