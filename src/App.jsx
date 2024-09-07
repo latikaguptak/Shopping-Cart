@@ -42,7 +42,7 @@ const App = () => {
         <footer className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white text-sm py-4 text-center mt-auto shadow-inner">
           &copy; 2024 Motion Store. All rights reserved.
         </footer>
-        <ToastContainer />
+        <ToastContainer stacked/>
       </Provider>
     </div>
   );

@@ -10,14 +10,17 @@ import {
 import { FaTrash } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
 
 const Cart = () => {
   const products = useSelector((state) => state.cart.cartItems);
   const price = useSelector((state) => state.cart.cartTotalPrice);
   const dispatch = useDispatch();
-
+  
+  // useEffect(()=>{},[])
   const removeFromCart = (product) => {
     dispatch(remove(product));
+
   };
 
   const clear_Cart = () => {
@@ -100,7 +103,7 @@ const Cart = () => {
                       </span>
                       <button
                         className="text-sm bg-gray-100 text-gray-700 px-2 py-1 rounded-md hover:bg-gray-200 transition duration-200"
-                        onClick={() => decrease_Quantity(product)}
+                        onClick={product.quantity===0?removeFromCart(product):() => decrease_Quantity(product)}
                         disabled={product.quantity <= 0}
                       >
                         -
@@ -119,7 +122,7 @@ const Cart = () => {
           </div>
         </>
       )}
-      <ToastContainer />
+      <ToastContainer stacked/>
     </div>
   );
 };
