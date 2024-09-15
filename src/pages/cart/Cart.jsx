@@ -10,7 +10,7 @@ import {
 import { FaTrash } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect } from "react";
+
 
 const Cart = () => {
   const products = useSelector((state) => state.cart.cartItems);
